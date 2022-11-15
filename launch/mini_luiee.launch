@@ -1,0 +1,13 @@
+<launch>
+    <include file="$(find aruco_analyzer)/launch/aruco_analyzer_node.launch"/>
+    <include file="$(find aruco_analyzer)/launch/bringup_C920_milind.launch"/>
+
+    <group ns="rosserial">
+        <node pkg="rosserial_python" name="serial_node" type="serial_node.py" output="screen">
+            <param name="port" value="/dev/ttyACM0"/>
+            <param name="baud" value="57600"/>
+        </node>
+    </group>
+
+    <node pkg="luiee" name="mini_luiee_node" type="mini_luiee_node.py" output="screen"/>
+</launch>
